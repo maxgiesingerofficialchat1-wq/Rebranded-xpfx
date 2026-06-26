@@ -39380,7 +39380,7 @@ var coerce = {
   date: ((arg) => ZodDate.create({ ...arg, coerce: true }))
 };
 
-// ../../../.merged/api-zod/src/generated/api.ts
+// ../../../lib/api-zod/src/generated/api.ts
 var HealthCheckResponse = objectType({
   status: stringType()
 });
@@ -50602,7 +50602,7 @@ function drizzle(...params) {
   drizzle2.mock = mock;
 })(drizzle || (drizzle = {}));
 
-// ../../../07-lib-misc/lib/db/src/schema/index.ts
+// ../../../lib/db/src/schema/index.ts
 var schema_exports = {};
 __export(schema_exports, {
   adminOtpTable: () => adminOtpTable,
@@ -62048,7 +62048,7 @@ var createInsertSchema = (entity, refine2) => {
   return handleColumns(columns, refine2 ?? {}, insertConditions);
 };
 
-// ../../../07-lib-misc/lib/db/src/schema/users.ts
+// ../../../lib/db/src/schema/users.ts
 var usersTable = pgTable("users", {
   id: uuid("id").primaryKey().defaultRandom(),
   username: text("username").notNull().unique(),
@@ -62213,7 +62213,7 @@ var insertReferralBonusSchema = createInsertSchema(referralBonusesTable).omit({ 
 var insertAdminRepSchema = createInsertSchema(adminRepsTable).omit({ id: true, addedAt: true });
 var insertAdminOtpSchema = createInsertSchema(adminOtpTable).omit({ id: true, createdAt: true });
 
-// ../../../07-lib-misc/lib/db/src/schema/wallets.ts
+// ../../../lib/db/src/schema/wallets.ts
 var walletTypeEnum = pgEnum("wallet_type", ["main", "trading", "social", "fiat", "p2p"]);
 var walletsTable = pgTable("wallets", {
   id: uuid("id").primaryKey().defaultRandom(),
@@ -62287,7 +62287,7 @@ var connectedWalletsTable = pgTable("connected_wallets", {
 var insertWalletSchema = createInsertSchema(walletsTable).omit({ id: true, createdAt: true });
 var insertTransactionSchema = createInsertSchema(transactionsTable).omit({ id: true, createdAt: true });
 
-// ../../../07-lib-misc/lib/db/src/schema/trades.ts
+// ../../../lib/db/src/schema/trades.ts
 var tradeTypeEnum = pgEnum("trade_type", ["long", "short"]);
 var tradeStatusEnum = pgEnum("trade_status", ["active", "completed", "cancelled"]);
 var tradesTable = pgTable("trades", {
@@ -62309,7 +62309,7 @@ var tradesTable = pgTable("trades", {
 });
 var insertTradeSchema = createInsertSchema(tradesTable).omit({ id: true, createdAt: true });
 
-// ../../../07-lib-misc/lib/db/src/schema/managers.ts
+// ../../../lib/db/src/schema/managers.ts
 var managersTable = pgTable("managers", {
   id: uuid("id").primaryKey().defaultRandom(),
   name: text("name").notNull(),
@@ -62328,7 +62328,7 @@ var managersTable = pgTable("managers", {
 });
 var insertManagerSchema = createInsertSchema(managersTable).omit({ id: true, createdAt: true });
 
-// ../../../07-lib-misc/lib/db/src/schema/messages.ts
+// ../../../lib/db/src/schema/messages.ts
 var messageContextEnum = pgEnum("message_context", ["manager", "p2p", "support"]);
 var messagesTable = pgTable("messages", {
   id: uuid("id").primaryKey().defaultRandom(),
@@ -62344,7 +62344,7 @@ var messagesTable = pgTable("messages", {
 });
 var insertMessageSchema = createInsertSchema(messagesTable).omit({ id: true, createdAt: true });
 
-// ../../../07-lib-misc/lib/db/src/schema/p2p.ts
+// ../../../lib/db/src/schema/p2p.ts
 var p2pListingStatusEnum = pgEnum("p2p_listing_status", ["active", "inactive", "completed"]);
 var p2pOrderStatusEnum = pgEnum("p2p_order_status", [
   "pending",
@@ -62444,7 +62444,7 @@ var insertP2PMerchantApplicationSchema = createInsertSchema(p2pMerchantApplicati
   rejectionReason: true
 });
 
-// ../../../07-lib-misc/lib/db/src/schema/assets.ts
+// ../../../lib/db/src/schema/assets.ts
 var assetCatalogTable = pgTable("asset_catalog", {
   id: uuid("id").primaryKey().defaultRandom(),
   symbol: text("symbol").notNull().unique(),
