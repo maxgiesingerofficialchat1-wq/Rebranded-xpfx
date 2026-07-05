@@ -1,14 +1,2 @@
-# Ignore node_modules and lockfiles
-node_modules
-package-lock.json
-pnpm-lock.yaml
-yarn.lock
-
-# Ignore Replit specific files
-.replit
-replit.nix
-replit.md
-
-# Ignore local env files
-.env
-.env.*
+railwayignore gitignore node_modules pnpm-lock.yamlyarn.lock.env.env.*.replit
+replit.nix replit.md
