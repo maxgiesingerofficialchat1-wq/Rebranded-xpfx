@@ -41,3 +41,7 @@ Thumbs.db
 .vscode
 .idea
 *.swp
+
+# Ignore documentation
+DEPLOYMENT_MASTER_PROMPT.md
+
