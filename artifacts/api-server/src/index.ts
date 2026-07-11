@@ -6,10 +6,15 @@ import http from 'http';
 import type { PrismaClient as PrismaClientType } from '@prisma/client';
 import app from './app';
 
-const PORT = process.env.PORT || 3000;
+const PORT = Number(process.env.PORT || 3000);
 const server = http.createServer(app);
 
 let prisma: PrismaClientType | null = null;
+
+function normalizePort(value: string | number | undefined) {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : 3000;
+}
 
 async function initDatabase() {
   if (!process.env.DATABASE_URL) {
@@ -28,10 +33,12 @@ async function bootstrap() {
   try {
     prisma = await initDatabase();
 
-    server.listen(PORT, () => {
-      console.log(`[SERVER] XpressPro FX API running on port ${PORT}`);
-      console.log(`[SERVER] Environment: ${process.env.NODE_ENV}`);
-      console.log(`[SERVER] Health: http://localhost:${PORT}/healthz`);
+    const resolvedPort = normalizePort(process.env.PORT || PORT);
+
+    server.listen(resolvedPort, '0.0.0.0', () => {
+      console.log(`[SERVER] XpressPro FX API running on port ${resolvedPort}`);
+      console.log(`[SERVER] Environment: ${process.env.NODE_ENV || 'development'}`);
+      console.log(`[SERVER] Health: http://0.0.0.0:${resolvedPort}/healthz`);
     });
   } catch (error) {
     console.error('[SERVER] Failed to start:', error);
@@ -55,6 +62,15 @@ process.on('SIGINT', async () => {
     await prisma?.$disconnect();
     process.exit(0);
   });
+});
+
+server.on('error', (error: NodeJS.ErrnoException) => {
+  if (error.code === 'EADDRINUSE') {
+    console.error(`[SERVER] Port ${PORT} is already in use. Please stop the existing process or change PORT.`);
+  } else {
+    console.error('[SERVER] Failed to bind:', error);
+  }
+  process.exit(1);
 });
 
 bootstrap();
