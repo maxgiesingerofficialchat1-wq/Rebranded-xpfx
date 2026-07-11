@@ -10,7 +10,11 @@
   "workspaces": [
     "artifacts/api-server",
     "artifacts/nextrade",
-    "artifacts/admin-portal"
+    "artifacts/admin-portal",
+    "lib/api-client-react",
+    "lib/api-zod",
+    "lib/db",
+    "artifacts/db"
   ],
   "scripts": {
     "build": "npm run build --workspaces --if-present",

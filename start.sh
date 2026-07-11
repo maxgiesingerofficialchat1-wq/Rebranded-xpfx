@@ -53,17 +53,17 @@ npm ci --prefer-offline 2>&1 | tail -5
 # Build API server
 echo ""
 echo "[build] Building API server..."
-npm run build -w @workspace/api-server
+npm run build --workspace=artifacts/api-server
 
 # Optionally build frontend apps (single-service mode)
 if [ "${BUILD_ALL:-false}" = "true" ]; then
   echo ""
   echo "[build] Building NeXTrade frontend..."
-  npm run build -w @workspace/nextrade
+  npm run build --workspace=artifacts/nextrade
   echo "[build] Building admin portal..."
-  npm run build -w @workspace/admin-portal
+  npm run build --workspace=artifacts/admin-portal
 fi
 
 echo ""
 echo "[start] Starting API server on port ${PORT}..."
-exec node --enable-source-maps artifacts/api-server/dist/index.mjs
+exec node --enable-source-maps artifacts/api-server/dist/index.js

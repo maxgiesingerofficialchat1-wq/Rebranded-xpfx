@@ -143,10 +143,11 @@ app.use(express.static(staticPath));
 app.use('/api/*', (req: Request, res: Response, next: NextFunction) => {
   const platform = req.headers['x-platform'];
   if (!platform) {
-    return res.status(400).json({
+    res.status(400).json({
       success: false,
       message: 'Missing platform identifier.'
     });
+    return;
   }
   next();
 });
