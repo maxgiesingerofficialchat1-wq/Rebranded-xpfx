@@ -153,6 +153,22 @@ app.get('/api/healthz', (_req: Request, res: Response) => {
   });
 });
 
+// Readiness probe: verifies DB connectivity when DATABASE_URL is configured
+app.get('/readyz', async (_req: Request, res: Response) => {
+  if (!process.env.DATABASE_URL) {
+    return res.status(200).json({ ready: true, reason: 'no-db-config' });
+  }
+  try {
+    const { PrismaClient } = await import('@prisma/client');
+    const client = new PrismaClient();
+    await client.$connect();
+    await client.$disconnect();
+    return res.status(200).json({ ready: true });
+  } catch (err) {
+    return res.status(503).json({ ready: false, error: String(err) });
+  }
+});
+
 // ─── STATIC FILE SERVING ──────────────────────────────────────────────────────
 const candidateRoots = [
   process.cwd(),
