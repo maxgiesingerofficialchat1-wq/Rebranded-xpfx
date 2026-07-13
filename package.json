@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "packageManager": "pnpm@10.32.1",
   "engines": {
     "node": ">=20.0.0",
-    "npm": ">=10.0.0"
+    "npm": ">=10.0.0",
+    "pnpm": ">=10.0.0"
   },
   "workspaces": [
     "artifacts/api-server",
@@ -23,7 +25,7 @@
     "start": "npm run build --workspaces --if-present && node artifacts/api-server/dist/index.mjs",
     "start:prod": "NODE_ENV=production npm run build --workspaces --if-present && NODE_ENV=production node artifacts/api-server/dist/index.mjs",
     "dev": "npm run dev --workspaces --if-present",
-    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "lint": "eslint . --config eslint.config.cjs --ext .ts,.tsx,.js,.jsx",
     "typecheck": "tsc --noEmit",
     "pm2:install": "npm i -g pm2 || true",
     "pm2:start": "pm2 start ecosystem.config.cjs",
@@ -31,7 +33,10 @@
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.63.0",
+    "@typescript-eslint/parser": "^8.63.0",
     "eslint": "^9.0.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
     "prisma": "^5.14.0",
     "typescript": "^5.4.5"
   },
