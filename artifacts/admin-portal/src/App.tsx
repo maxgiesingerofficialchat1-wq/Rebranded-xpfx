@@ -15,6 +15,9 @@ import { BillingPage } from "@/pages/billing-admin";
 import { PlatformSettingsPage } from "@/pages/platform-settings";
 import { AssetsPage } from "@/pages/assets";
 import { TradesPage } from "@/pages/trades";
+import { DepositsPage } from "@/pages/deposits";
+import { KycPage } from "@/pages/kyc";
+import { WithdrawalsPage } from "@/pages/withdrawals";
 import { P2PMerchantsPage } from "@/pages/p2p-merchants";
 import { AdminNotificationsPage } from "@/pages/admin-notifications";
 import {
@@ -148,6 +151,27 @@ function Router() {
         {() => (
           <Protected>
             <TradesPage />
+          </Protected>
+        )}
+      </Route>
+      <Route path="/deposits">
+        {() => (
+          <Protected>
+            <DepositsPage />
+          </Protected>
+        )}
+      </Route>
+      <Route path="/kyc">
+        {() => (
+          <Protected>
+            <KycPage />
+          </Protected>
+        )}
+      </Route>
+      <Route path="/withdrawals">
+        {() => (
+          <Protected>
+            <WithdrawalsPage />
           </Protected>
         )}
       </Route>
