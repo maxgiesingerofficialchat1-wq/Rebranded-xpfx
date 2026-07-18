@@ -10,7 +10,7 @@ COPY lib/api-zod/package.json ./lib/api-zod/package.json
 COPY lib/db/package.json ./lib/db/package.json
 COPY artifacts/db/package.json ./artifacts/db/package.json
 COPY scripts ./scripts
-RUN npm install --no-audit --no-fund
+RUN npm ci --no-audit --no-fund
 COPY . .
 RUN npm run build --workspace=artifacts/api-server
 EXPOSE 3000

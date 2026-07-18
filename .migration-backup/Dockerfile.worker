@@ -11,7 +11,7 @@ WORKDIR /app
 COPY package.json package-lock.json* ./
 COPY packages/*/package.json ./packages/
 COPY apps/worker/package.json ./apps/worker/
-RUN npm ci --only=production --ignore-scripts || npm install --production
+RUN npm ci --omit=dev --no-audit --no-fund
 
 # Rebuild the source code only when needed
 FROM base AS builder
@@ -38,8 +38,7 @@ COPY --from=builder /app/apps/worker ./apps/worker
 COPY --from=builder /app/packages ./packages
 COPY --from=builder /app/package.json ./
 
-# Copy any shared config needed
-COPY --from=builder /app/.env.production* ./.env* 2>/dev/null || true
+# All config is supplied via environment variables at runtime — never bake .env files into the image.
 
 USER worker
 
