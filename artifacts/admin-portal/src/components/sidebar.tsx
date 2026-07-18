@@ -16,6 +16,9 @@ import {
   Store,
   Bell,
   Menu,
+  Banknote,
+  BadgeCheck,
+  HandCoins,
 } from "lucide-react";
 import {
   useLogout,
@@ -27,6 +30,9 @@ export const NAV = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
   { href: "/users", label: "Users", icon: Users },
   { href: "/trades", label: "Trades", icon: TrendingUp },
+  { href: "/deposits", label: "Deposits", icon: Banknote },
+  { href: "/withdrawals", label: "Withdrawals", icon: HandCoins },
+  { href: "/kyc", label: "KYC", icon: BadgeCheck },
   { href: "/assets", label: "Assets", icon: Coins },
   { href: "/p2p-merchants", label: "P2P Merchants", icon: Store },
   { href: "/gas-fee", label: "Gas Fee", icon: Fuel },
