@@ -1,47 +1,36 @@
-modules = ["nodejs-20", "python-3.12", "web"]
-[nix]
-channel = "stable-25_05"
+modules = ["nodejs-20", "web", "bash", "postgresql-16"]
+
+[deployment]
+router = "application"
+deploymentTarget = "autoscale"
+
+[deployment.postBuild]
+args = ["pnpm", "store", "prune"]
+env = { "CI" = "true" }
+
+[workflows]
+runButton = "Project"
 
 [agent]
+stack = "PNPM_WORKSPACE"
 expertMode = true
-stack = "BEST_EFFORT_FALLBACK"
+
+[postMerge]
+path = "scripts/post-merge.sh"
+timeoutMs = 20000
+
+[nix]
+channel = "stable-25_05"
 
 [userenv]
 
 [userenv.shared]
-PORT = "8080"
-LOG_LEVEL = "info"
-APP_NAME = "XpressProFx"
+ADMIN_EMAIL = "enwukwerigodspower7@gmail.com,enwukwerigodspower729@yahoo.com"
+ADMIN_NOTIFY_EMAIL = "enwukwerigodspower7@gmail.com"
+AI_INTEGRATIONS_OPENAI_API_KEY = "_DUMMY_API_KEY_"
+AI_INTEGRATIONS_OPENAI_BASE_URL = "http://localhost:1106/modelfarm/openai"
 ALLOWED_ORIGINS = "https://xpressprofx.com,https://www.xpressprofx.com"
-NODE_ENV = "development"
+APP_NAME = "XpressProFx.com"
 COREPACK_ENABLE_STRICT = "0"
-
-[workflows]
-
-[[ports]]
-localPort = 5000
-externalPort = 80
-
-[[ports]]
-localPort = 8080
-externalPort = 8080
-
-[[ports]]
-localPort = 8081
-externalPort = 8081
-
-[[ports]]
-localPort = 8082
-externalPort = 3002
-
-[[ports]]
-localPort = 8083
-externalPort = 3003
-
-[[ports]]
-localPort = 25580
-externalPort = 3001
-
-[[ports]]
-localPort = 25849
-externalPort = 3000
+ENABLE_DEMO_AUTH = "true"
+LOG_LEVEL = "info"
