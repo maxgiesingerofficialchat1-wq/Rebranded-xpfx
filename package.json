@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@10.32.1",
   "engines": {
     "node": ">=20.0.0",
     "npm": ">=10.0.0"
@@ -29,7 +28,7 @@
     "dev": "npm run dev --workspaces --if-present",
     "lint": "eslint . --config eslint.config.cjs --ext .ts,.tsx,.js,.jsx",
     "typecheck": "tsc --noEmit",
-    "test": "pnpm -F xpresspro-fx-api-server run build && node --import tsx tests/app-readiness.test.mjs && node --import tsx tests/production-env.test.mjs",
+    "test": "npm run build --workspace=artifacts/api-server && node --import tsx tests/app-readiness.test.mjs && node --import tsx tests/production-env.test.mjs",
     "pm2:install": "npm install -g pm2 || true",
     "pm2:start": "pm2 start ecosystem.config.cjs",
     "pm2:save": "pm2 save"
@@ -44,14 +43,5 @@
     "tsx": "^4.23.1",
     "typescript": "^5.4.5",
     "husky": "^9.0.0"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@prisma/client",
-      "@prisma/engines",
-      "prisma",
-      "esbuild",
-      "es5-ext"
-    ]
   }
 }
