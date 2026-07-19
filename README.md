@@ -186,3 +186,26 @@ Private — All rights reserved. XpressPro FX © 2026
 ---
 
 That is the full file, composed from everything covered across our session. You can copy it entirely in one click. Let me know if you need the `deploy.yml` or `.env.example` reviewed and matched to this same production standard.
+
+## Local Preview (Dev)
+
+Use these commands from the repository root to run frontends locally and open them in a browser:
+
+```bash
+# Admin portal (http://localhost:5173)
+npm run dev:admin
+
+# Nextrade (http://localhost:5174)
+npm run dev:nextrade
+
+# Mockup sandbox (http://localhost:5175)
+npm run dev:mockup
+
+# Run all three in parallel (foreground)
+npm run dev:all
+
+# Start preview (vite preview across workspaces)
+npm run preview
+```
+
+VS Code: open the Run & Debug view and choose one of the "Launch ... (Chrome)" configurations. The matching dev task will start and VS Code will open the app in your browser once Vite reports the local URL.
